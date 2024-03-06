@@ -9,7 +9,7 @@ export default function Navbar({ handleChange, handleSubmit, location }) {
                 </div>
                 <div className="right">
                     <form action="" onSubmit={(event) => handleSubmit(event)}>
-                        <input type="text" placeholder="Kudasan,Gujarat" value={location} onChange={(event) => handleChange(event)} />
+                        <input type="text" placeholder="Search for cities or locations" value={location} onChange={(event) => handleChange(event)} />
                         <button type="submit">Go</button>
                     </form>
                 </div>
