@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import Navbar from './components/Navbar'
 import Overview from './components/Overview'
+import DetailedWeather from './components/DetailedWeather'
 function App() {
   const [location, setLocation] = useState('');
   const [forecast, setForecast] = useState(null);
@@ -16,7 +17,7 @@ function App() {
     if (navigator.geolocation && !flag) {
       navigator.geolocation.getCurrentPosition(async (position) => {
         const { latitude, longitude } = position.coords;
-        console.log(latitude, longitude);
+        // console.log(latitude, longitude);
         await fetchForecast(latitude, longitude);
         setFlag(true);
       }, (error) => {
@@ -40,7 +41,7 @@ function App() {
   const fetchForecast = async (lat, long) => {
     try {
       const response = await fetch(`http://localhost:3000/forecast/${lat}/${long}`).then(response => response.json());
-      console.log(response);
+      // console.log(response);
       setForecast(response);
     }
     catch (error) {
@@ -66,7 +67,8 @@ function App() {
   return (
     <>
       <Navbar handleChange={handleChange} handleSubmit={handleSubmit} location={location} />
-      {forecast && <Overview forecast={forecast} />}
+      <Overview forecast={forecast} />
+      <DetailedWeather forecast={forecast} />
     </>
   )
 }

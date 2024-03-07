@@ -1,0 +1,22 @@
+.detailedWeather {
+    background-color: #0F172A;
+    color: #E0995E;
+    font-family: "Inter", sans-seriff;
+    padding: 10px;
+    min-height: 400px;
+
+    .heading {
+        span {
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        hr {
+            margin: 10px 0 10px 0;
+        }
+    }
+
+    .accordion {
+        width: 100%;
+    }
+}

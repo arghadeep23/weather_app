@@ -1,0 +1,27 @@
+.item {
+    // background-color: rgba(155, 170, 205, 0.238);
+    margin-bottom: 5px;
+    padding: 10px 20px;
+    font-family: "Inter", sans-serif;
+
+    .title {
+        font-family: "Inter", sans-serif;
+        color: #E0995E;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .content {
+        font-family: "Inter", sans-serif;
+        color: #8b7f75;
+        // max-height: 0;
+        // overflow: hidden;
+    }
+
+    .details {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+}
