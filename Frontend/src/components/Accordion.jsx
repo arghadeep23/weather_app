@@ -1,4 +1,4 @@
-import "../styles/AccordionItem.scss";
+import "../styles/Accordion.scss";
 import AccordionItemCard from "./AccordionItemCard";
 export default function Accordion({ forecast, date, toggle, index, selected }) {
     // console.log(forecast);
@@ -17,7 +17,7 @@ export default function Accordion({ forecast, date, toggle, index, selected }) {
         return `${day} ${monthName}, ${year}`;
     }
     return (
-        <div className="item">
+        <div className={`item ${selected == index ? 'selected' : ''}`}>
             <div className="title" onClick={() => toggle(index)}>
                 <h3>Forecast for {getFormattedDate(date)}</h3>
                 <span>{selected === index ? '-' : '+'}</span>
@@ -29,12 +29,8 @@ export default function Accordion({ forecast, date, toggle, index, selected }) {
                         {
                             forecast.map((forecast, index) => {
                                 return (
-                                    // <AccordionItemCard />
-                                    <div key={index} className="detail">
-                                        <span>{forecast.dt_txt.split(' ')[1]}</span>
-                                        <span>{forecast.weather[0].description}</span>
-                                        <span>{forecast.main.temp}°C</span>
-                                    </div>
+                                    <AccordionItemCard forecast={forecast} key={index} />
+
                                 )
                             })
                         }

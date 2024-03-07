@@ -40,88 +40,91 @@ export default function Overview({ forecast }) {
     return (
         <div className="overview">
             {forecast && <>
-                <div className="leftDiv">
-                    <div className="iconShow">
-                        <object type="image/svg+xml" data={weatherIconSelect()} className="icon">
-                            Your browser does not support SVG
-                        </object>
-                    </div>
-                    <div className="temperature">
-                        <span>{forecast.list[0].main.temp} °C</span>
-                    </div>
-                    <hr />
-                    <div className="weatherMain">
-                        <span>{forecast.list[0].weather[0].main}</span>
-                    </div>
-                    <div className="subDiv loc">
-                        <div className="iconImg">
-                            <object type="image/svg+xml" data={Location} className="icon">
+                <div className="wrapper">
+                    <div className="leftDiv">
+                        <div className="iconShow">
+                            <object type="image/svg+xml" data={weatherIconSelect()} className="icon">
                                 Your browser does not support SVG
                             </object>
                         </div>
-                        <div className="type">
-                            <span>{forecast.city.name}</span>,   &nbsp;
-                            <span>{forecast.city.country}</span>
+                        <div className="temperature">
+                            <span>{forecast.list[0].main.temp} °C</span>
+                        </div>
+                        <hr />
+                        <div className="weatherMain">
+                            <span>{forecast.list[0].weather[0].main}</span>
+                        </div>
+                        <div className="subDiv loc">
+                            <div className="iconImg">
+                                <object type="image/svg+xml" data={Location} className="icon">
+                                    Your browser does not support SVG
+                                </object>
+                            </div>
+                            <div className="type">
+                                <span>{forecast.city.name}</span>,   &nbsp;
+                                <span>{forecast.city.country}</span>
+                            </div>
+                        </div>
+                        <div className="subDiv">
+                            <div className="iconImg">
+                                <object type="image/svg+xml" data={Date} className="icon">
+                                    Your browser does not support SVG
+                                </object>
+                            </div>
+                            <div className="type">
+                                <span>{getFormattedDate(forecast.list[0].dt_txt)}</span>
+                            </div>
                         </div>
                     </div>
-                    <div className="subDiv">
-                        <div className="iconImg">
-                            <object type="image/svg+xml" data={Date} className="icon">
+                    <div className="weather-info">
+                        <div className="widget1">
+                            <div className="iconImg">
+                                <object type="image/svg+xml" data={Wind} className="icon">
+                                    Your browser does not support SVG
+                                </object>
+                            </div>
+                            <div className="type">
+                                <span className="widgetName">Wind</span>
+                                <span className="values">{forecast.list[0].wind.speed} km/hr</span>
+                            </div>
+                        </div>
+                        <div className="widget1">
+                            <div className="iconImg">
+                                <object type="image/svg+xml" data={Pressure} className="icon">
+                                    Your browser does not support SVG
+                                </object>
+                            </div>
+                            <div className="type">
+                                <span className="widgetName">Pressure</span>
+                                <span className="values">{forecast.list[0].main.pressure} hPA</span>
+                            </div>
+                        </div>
+                        <div className="widget1">
+                            <object type="image/svg+xml" data={Visibility} className="icon">
                                 Your browser does not support SVG
                             </object>
+                            <div className="type">
+                                <span className="widgetName">Visibility</span>
+                                <span className="values">{parseFloat(forecast.list[0].visibility) / 1000} km</span>
+                            </div>
                         </div>
-                        <div className="type">
-                            <span>{getFormattedDate(forecast.list[0].dt_txt)}</span>
+                        <div className="widget1">
+                            <object type="image/svg+xml" data={Humidity} className="icon">
+                                Your browser does not support SVG
+                            </object>
+                            <div className="type">
+                                <span className="widgetName">Humidity</span>
+                                <span className="values">{forecast.list[0].main.humidity}%</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className="weather-info">
-                    <div className="widget1">
-                        <div className="iconImg">
-                            <object type="image/svg+xml" data={Wind} className="icon">
-                                Your browser does not support SVG
-                            </object>
-                        </div>
-                        <div className="type">
-                            <span className="widgetName">Wind</span>
-                            <span className="values">{forecast.list[0].wind.speed} km/hr</span>
-                        </div>
-                    </div>
-                    <div className="widget1">
-                        <div className="iconImg">
-                            <object type="image/svg+xml" data={Pressure} className="icon">
-                                Your browser does not support SVG
-                            </object>
-                        </div>
-                        <div className="type">
-                            <span className="widgetName">Pressure</span>
-                            <span className="values">{forecast.list[0].main.pressure} hPA</span>
-                        </div>
-                    </div>
-                    <div className="widget1">
-                        <object type="image/svg+xml" data={Visibility} className="icon">
-                            Your browser does not support SVG
-                        </object>
-                        <div className="type">
-                            <span className="widgetName">Visibility</span>
-                            <span className="values">{parseFloat(forecast.list[0].visibility) / 1000} km</span>
-                        </div>
-                    </div>
-                    <div className="widget1">
-                        <object type="image/svg+xml" data={Humidity} className="icon">
-                            Your browser does not support SVG
-                        </object>
-                        <div className="type">
-                            <span className="widgetName">Humidity</span>
-                            <span className="values">{forecast.list[0].main.humidity}%</span>
-                        </div>
-                    </div>
-                </div>
+
                 <div className="fiveDayWeather">
                     <div className="fiveDayWeatherContent">
                         {
                             forecast.list.map((item, index) => {
-                                if (index % 8 === 0) {
+                                if (index % 8 === 0 && index <= 32) {
                                     return (
                                         <div key={index} className="fiveDayWeatherCard">
                                             <div className="fiveDayWeatherDate">

@@ -1,6 +1,6 @@
 .overview {
     padding-top: 100px;
-    height: 300px;
+    min-height: 300px;
     background-color: #0F172A;
     color: white;
     display: flex;
@@ -22,120 +22,137 @@
         }
     }
 
-    .leftDiv {
-        // margin-left: 50px;
-        border: 1px solid rgba(255, 255, 255, 0.178);
-        background-color: rgba(155, 170, 205, 0.238);
-        border-radius: 10px;
-        width: 200px;
-        height: 250px;
-        padding: 10px 10px 0px 10px;
-        // font-family: "Lora", serif;
-        font-family: "Inter", sans-serif;
-        // font-family: "Montserrat", sans-serif;
+    .wrapper {
+        display: flex;
+        gap: 15px;
 
-        .iconShow {
-            display: flex;
-            justify-content: center;
-
-            object {
-                width: 50px;
-                height: 50px;
-            }
-        }
-
-        .temperature {
-            display: flex;
-            justify-content: center;
-            font-size: 30px;
-        }
-
-        hr {
-            margin: 10px 0 10px 0;
-        }
-
-        .weatherMain {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .subDiv {
-            display: flex;
-            align-items: center;
-            // justify-content: center;
-            gap: 5px;
-
-            .iconImg {
-                object {
-                    width: 30px;
-                    height: 30px;
-                }
-            }
-        }
-    }
-
-    .icon {
-        width: 30px;
-        height: 30px;
-    }
-
-    .weather-info {
-        display: grid;
-        grid-template-columns: repeat(2, 210px);
-        grid-auto-rows: 138px;
-        font-family: "Inter", sans-serif;
-        width: 410px;
-
-        .widget1 {
+        .leftDiv {
+            -webkit-box-shadow: 1px 4px 17px -12px rgba(153, 153, 153, 1);
+            -moz-box-shadow: 1px 4px 17px -12px rgba(153, 153, 153, 1);
+            box-shadow: 1px 4px 17px -12px rgba(153, 153, 153, 1);
+            // margin-left: 50px;
             border: 1px solid rgba(255, 255, 255, 0.178);
             background-color: rgba(155, 170, 205, 0.238);
-            border-radius: 8px;
-            height: 115px;
+            border-radius: 10px;
             width: 200px;
-            // padding: 10px 10px 0px 10px;
+            height: 280px;
+            padding: 10px 10px 0px 10px;
             // font-family: "Lora", serif;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            justify-content: center;
+            font-family: "Inter", sans-serif;
+            // font-family: "Montserrat", sans-serif;
 
-            .type {
-                height: 100%;
+            .iconShow {
                 display: flex;
-                flex-direction: column;
-                gap: 20px;
-                // align-items: center;
                 justify-content: center;
+
+                object {
+                    width: 50px;
+                    height: 50px;
+                }
+            }
+
+            .temperature {
+                display: flex;
+                justify-content: center;
+                font-size: 30px;
+            }
+
+            hr {
+                margin: 10px 0 10px 0;
+            }
+
+            .weatherMain {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+
+            .subDiv {
+                display: flex;
+                align-items: center;
+                // justify-content: center;
+                gap: 5px;
 
                 .iconImg {
                     object {
                         width: 30px;
                         height: 30px;
-
                     }
                 }
+            }
+        }
 
-                .widgetName {
-                    font-family: "Inter", sans-serif;
-                    font-size: 17px;
-                }
+        .icon {
+            width: 30px;
+            height: 30px;
+        }
 
-                .values {
-                    // font-family: "Montserrat", sans-serif;
-                    font-family: "Inter", sans-serif;
+        .weather-info {
+            display: grid;
+            grid-template-columns: repeat(2, 210px);
+            grid-auto-rows: 125px;
+            font-family: "Inter", sans-serif;
+            width: 410px;
+
+            .widget1 {
+                -webkit-box-shadow: 6px 4px 17px -12px rgba(153, 153, 153, 1);
+                -moz-box-shadow: 6px 4px 17px -12px rgba(153, 153, 153, 1);
+                box-shadow: 6px 4px 17px -12px rgba(153, 153, 153, 1);
+
+                border: 1px solid rgba(255, 255, 255, 0.178);
+                background-color: rgba(155, 170, 205, 0.238);
+                border-radius: 8px;
+                height: 115px;
+                width: 200px;
+                // padding: 10px 10px 0px 10px;
+                // font-family: "Lora", serif;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                justify-content: center;
+
+                .type {
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                    // align-items: center;
+                    justify-content: center;
+
+                    .iconImg {
+                        object {
+                            width: 30px;
+                            height: 30px;
+
+                        }
+                    }
+
+                    .widgetName {
+                        font-family: "Inter", sans-serif;
+                        font-size: 17px;
+                    }
+
+                    .values {
+                        // font-family: "Montserrat", sans-serif;
+                        font-family: "Inter", sans-serif;
+                    }
                 }
             }
         }
     }
 
+
     .fiveDayWeather {
+        -webkit-box-shadow: 1px 4px 17px -12px rgba(153, 153, 153, 1);
+        -moz-box-shadow: 1px 4px 17px -12px rgba(153, 153, 153, 1);
+        box-shadow: 1px 4px 17px -12px rgba(153, 153, 153, 1);
+
         border: 1px solid rgba(255, 255, 255, 0.178);
         background-color: rgba(155, 170, 205, 0.238);
         display: flex;
         flex-direction: column;
         font-family: 'Inter', sans-serif;
-        height: 250px;
+        height: 280px;
         width: 250px;
         // padding: 10px 10px 0px 20px;
         justify-content: center;
@@ -172,6 +189,32 @@
 @media screen and (max-width: 530px) {
     .overview {
         padding-top: 90px;
-        padding-left: 5%;
+        padding-left: 2%;
+    }
+}
+
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+    object {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media screen and (max-width:900px) {
+    .overview {
+        // padding-top: 90px;
+        // padding-left: 5%;
+        flex-direction: column;
+        align-items: center;
+
+        // .leftDiv {
+        //     // width: 80%;
+        // }
     }
 }

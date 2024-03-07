@@ -1,7 +1,7 @@
 import "../styles/DetailedWeather.scss";
 import Loader from "./Loader";
 import { useState, useEffect } from "react";
-import AccordionItem from "./AccordionItem";
+import Accordion from "./Accordion";
 export default function DetailedWeather({ forecast }) {
     const [groupedForecasts, setGroupedForecasts] = useState({});
     useEffect(() => {
@@ -35,14 +35,16 @@ export default function DetailedWeather({ forecast }) {
             {forecast &&
                 <div className="detailedWeather">
                     <div className="heading">
-                        <span>Next {Object.keys(groupedForecasts).length} days</span>
+                        <h2>Next {Math.min(Object.keys(groupedForecasts).length, 5)} days</h2>
                         <hr />
                     </div>
                     <div className="accordion">
                         {
                             Object.keys(groupedForecasts).map((date, index) => {
+                                if (index > 4)
+                                    return null;
                                 return (
-                                    <AccordionItem key={index} toggle={toggle} forecast={groupedForecasts[date]} date={date} selected={selected} index={index} />
+                                    <Accordion key={index} toggle={toggle} forecast={groupedForecasts[date]} date={date} selected={selected} index={index} />
                                 )
                             })
                         }

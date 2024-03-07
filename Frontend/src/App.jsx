@@ -3,16 +3,33 @@ import './App.css'
 import Navbar from './components/Navbar'
 import Overview from './components/Overview'
 import DetailedWeather from './components/DetailedWeather'
+import Loader from './components/Loader'
+import { TempContext } from './styles/src/TempContext'
 function App() {
   const [location, setLocation] = useState('');
   const [forecast, setForecast] = useState(null);
+  const [unit, setUnit] = useState('Celsius');
   const [flag, setFlag] = useState(false);
   useEffect(() => {
     // Fetch the user's current location when the component mounts
-    // console.log('Fetching user location')
+    // console.lunitching user location')
     fetchUserLocation();
-  });
-
+  }, [flag]);
+  function handleUnit() {
+    console.log('hey');
+    setUnit((prevTemp) => {
+      if (prevTemp === 'Fahrenheit') {
+        return 'Celsius';
+      }
+      else {
+        return 'Fahrenheit';
+      }
+    })
+  }
+  function handleGeo() {
+    setForecast(null);
+    setFlag(false);
+  }
   async function fetchUserLocation() {
     if (navigator.geolocation && !flag) {
       navigator.geolocation.getCurrentPosition(async (position) => {
@@ -28,7 +45,7 @@ function App() {
   const fetchLatLong = async (location) => {
     try {
       const response = await fetch(`http://localhost:3000/lat-long/${location}`).then(response => response.json());
-      console.log(response);
+      // console.log(response);
       return {
         lat: response[0].lat,
         lon: response[0].lon
@@ -52,6 +69,7 @@ function App() {
     setLocation(event.target.value);
   }
   async function handleSubmit(event) {
+    setForecast(null);
     event.preventDefault();
     if (location === '') {
       alert('Please enter a valid location');
@@ -64,12 +82,23 @@ function App() {
     // then fetch the forecast using the latitude and longitude
     fetchForecast(lat, long);
   }
+  const tempCtx = {
+    unit: unit
+  }
   return (
-    <>
-      <Navbar handleChange={handleChange} handleSubmit={handleSubmit} location={location} />
-      <Overview forecast={forecast} />
-      <DetailedWeather forecast={forecast} />
-    </>
+    <TempContext.Provider value={tempCtx}>
+      <Navbar handleChange={handleChange} handleSubmit={handleSubmit} location={location} handleUnit={handleUnit} handleGeo={handleGeo} />
+      {
+        forecast &&
+        <>
+          <Overview forecast={forecast} />
+          <DetailedWeather forecast={forecast} />
+        </>
+      }
+      {
+        !forecast && <div className="loading"><Loader /></div>
+      }
+    </TempContext.Provider>
   )
 }
 
