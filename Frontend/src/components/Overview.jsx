@@ -12,7 +12,7 @@ import Clouds from "../assets/clouds.svg";
 import Loader from "./Loader";
 import { useContext } from 'react';
 import { TempContext } from '../store/TempContext';
-export default function Overview({ forecast }) {
+export default function Overview({ forecast, region }) {
     function capitalizeFirstLetter(str) {
         // Check if the string is not empty
         if (str.length > 0) {
@@ -74,8 +74,9 @@ export default function Overview({ forecast }) {
                                 </object>
                             </div>
                             <div className="type">
-                                <span>{forecast.city.name}</span>,   &nbsp;
-                                <span>{forecast.city.country}</span>
+                                <span>{region.city}</span>,   &nbsp;
+                                <span>{region.state}</span>,   &nbsp;
+                                <span>{region.country}</span>
                             </div>
                         </div>
                         <div className="subDiv">

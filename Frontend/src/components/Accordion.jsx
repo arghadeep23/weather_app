@@ -1,10 +1,8 @@
 import "../styles/Accordion.scss";
 import AccordionItemCard from "./AccordionItemCard";
 export default function Accordion({ forecast, date, toggle, index, selected }) {
-    // console.log(forecast);
-    // console.log(index);
     function getFormattedDate(date) {
-        //"2024-03-06 21:00:00"
+        // formats the date from the format "2024-03-06 21:00:00" to "6 March, 2024"
         const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         const year = date.substring(0, 4);
         const month = date.substring(5, 7);
@@ -17,6 +15,7 @@ export default function Accordion({ forecast, date, toggle, index, selected }) {
         return `${day} ${monthName}, ${year}`;
     }
     return (
+        // The Accordion component is used to display the forecast for the next 5 days
         <div className={`item ${selected == index ? 'selected' : ''}`}>
             <div className="title" onClick={() => toggle(index)}>
                 <h3>Forecast for {getFormattedDate(date)}</h3>

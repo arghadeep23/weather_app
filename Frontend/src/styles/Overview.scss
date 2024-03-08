@@ -7,7 +7,6 @@
     justify-content: center;
     gap: 15px;
 
-
     // justify-content: space-around;
     .loader {
         display: flex;
@@ -135,14 +134,12 @@
                     }
 
                     .values {
-                        // font-family: "Montserrat", sans-serif;
                         font-family: "Inter", sans-serif;
                     }
                 }
             }
         }
     }
-
 
     .fiveDayWeather {
         -webkit-box-shadow: 1px 4px 17px -12px rgba(153, 153, 153, 1);
@@ -193,38 +190,19 @@
     }
 }
 
-
-
-.loader {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-
-    object {
-        width: 100px;
-        height: 100px;
-    }
-}
-
 @media screen and (max-width:1000px) {
     .overview {
-        // padding-top: 90px;
-        // padding-left: 5%;
         flex-direction: column;
         align-items: center;
 
         .fiveDayWeather {
             width: 730px;
         }
-
-        // .leftDiv {
-        //     // width: 80%;
-        // }
     }
 }
 
+// to make the leftDiv responsive, the overview will be split into two rows, top and bottom,
+// top will contain region details and weather details, bottom will contain the 5 day weather forecast
 @media screen and (max-width:760px) {
     .overview {
         .wrapper {
@@ -259,6 +237,7 @@
     }
 }
 
+// to make the widgets responsive, they will now appear as a single column
 @media screen and (max-width: 530px) {
     .overview {
         .wrapper {
@@ -266,20 +245,17 @@
                 width: 80%;
                 grid-template-columns: auto;
                 grid-auto-rows: 200px;
-                // background-color: red;   
-                // padding-left: 40px;
 
                 .widget1 {
-                    // width: 200px;
                     width: auto;
                     height: 190px;
                 }
             }
         }
     }
-
 }
 
+// to deal with the extra height added to the navbar to make it responsive
 @media screen and (max-width:560px) {
     .overview {
         padding-top: 150px;

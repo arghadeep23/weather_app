@@ -7,6 +7,7 @@ import Clouds from "../assets/clouds.svg";
 import Weather from "../assets/weather.svg";
 export default function AccordionItemCard({ forecast }) {
     const { unit } = useContext(TempContext);
+    // To convert the time format from "21:00:00" to "21:00"
     const convertTimeFormat = (time) => {
         const parts = time.split(':');
         return `${parts[0]}:${parts[1]}`;
@@ -22,6 +23,7 @@ export default function AccordionItemCard({ forecast }) {
         }
     }
     function weatherIconSelect() {
+        // selects the weather icon based on the forecast
         const icon = Weather;
         switch (forecast.weather[0].main) {
             case "Rain":
