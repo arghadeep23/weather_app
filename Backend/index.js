@@ -2,6 +2,7 @@ require('dotenv').config()
 // used express to create a server
 const express = require('express');
 const app = express();
+const PORT = process.env.PORT || 3000;
 // used cors to allow cross-origin requests
 const cors = require('cors');
 const corsOptions = {
@@ -60,6 +61,6 @@ app.get('/forecast/:lat/:lon/:unit', async (req, res) => {
     }
 });
 //  backend is running on port 3000
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 })
