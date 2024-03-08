@@ -4,9 +4,10 @@ import Navbar from './components/Navbar'
 import Overview from './components/Overview'
 import DetailedWeather from './components/DetailedWeather'
 import Loader from './components/Loader'
-import { TempContext } from './styles/src/TempContext'
+import { TempContext } from './store/TempContext'
 function App() {
   const [location, setLocation] = useState('');
+  const [coordinates, setCoordinates] = useState({ lat: 0, lon: 0 });
   const [forecast, setForecast] = useState(null);
   const [unit, setUnit] = useState('Celsius');
   const [flag, setFlag] = useState(false);
@@ -33,7 +34,9 @@ function App() {
   async function fetchUserLocation() {
     if (navigator.geolocation && !flag) {
       navigator.geolocation.getCurrentPosition(async (position) => {
+        console.log(position);
         const { latitude, longitude } = position.coords;
+        setCoordinates({ lat: latitude, lon: longitude });
         // console.log(latitude, longitude);
         await fetchForecast(latitude, longitude);
         setFlag(true);
@@ -45,11 +48,13 @@ function App() {
   const fetchLatLong = async (location) => {
     try {
       const response = await fetch(`http://localhost:3000/lat-long/${location}`).then(response => response.json());
-      // console.log(response);
-      return {
-        lat: response[0].lat,
-        lon: response[0].lon
-      }
+      console.log(response);
+      // return {
+      //   lat: response[0].lat,
+      //   lon: response[0].lon
+      // }
+      setCoordinates({ lat: response[0].lat, lon: response[0].lon });
+      return;
     }
     catch (error) {
       console.log(error);
@@ -57,7 +62,7 @@ function App() {
   }
   const fetchForecast = async (lat, long) => {
     try {
-      const response = await fetch(`http://localhost:3000/forecast/${lat}/${long}`).then(response => response.json());
+      const response = await fetch(`http://localhost:3000/forecast/${lat}/${long}/${unit === 'Celsius' ? 'metric' : 'imperial'}`).then(response => response.json());
       // console.log(response);
       setForecast(response);
     }
@@ -69,19 +74,23 @@ function App() {
     setLocation(event.target.value);
   }
   async function handleSubmit(event) {
-    setForecast(null);
     event.preventDefault();
     if (location === '') {
       alert('Please enter a valid location');
       return;
     }
+    setForecast(null);
     // first fetch the latitude and longitude using openweathermap api
-    const obj = await fetchLatLong(location);
-    const lat = obj.lat;
-    const long = obj.lon;
+    await fetchLatLong(location);
+    // const lat = obj.lat;
+    // const long = obj.lon;
     // then fetch the forecast using the latitude and longitude
-    fetchForecast(lat, long);
+    fetchForecast(coordinates.lat, coordinates.lon);
   }
+  useEffect(() => {
+    setForecast(null);
+    fetchForecast(coordinates.lat, coordinates.lon);
+  }, [unit, coordinates]);
   const tempCtx = {
     unit: unit
   }

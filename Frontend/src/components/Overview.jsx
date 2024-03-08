@@ -10,7 +10,20 @@ import Snow from "../assets/snow.svg";
 import Rain from "../assets/rain.svg";
 import Clouds from "../assets/clouds.svg";
 import Loader from "./Loader";
+import { useContext } from 'react';
+import { TempContext } from '../store/TempContext';
 export default function Overview({ forecast }) {
+    function capitalizeFirstLetter(str) {
+        // Check if the string is not empty
+        if (str.length > 0) {
+            // Convert the first character to uppercase and concatenate it with the rest of the string
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        } else {
+            // If the string is empty, return it as it is
+            return str;
+        }
+    }
+    const { unit } = useContext(TempContext);
     function getFormattedDate(date) {
         //"2024-03-06 21:00:00"
         const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -48,7 +61,7 @@ export default function Overview({ forecast }) {
                             </object>
                         </div>
                         <div className="temperature">
-                            <span>{forecast.list[0].main.temp} °C</span>
+                            <span>{forecast.list[0].main.temp} °{unit[0]}</span>
                         </div>
                         <hr />
                         <div className="weatherMain">
@@ -131,14 +144,13 @@ export default function Overview({ forecast }) {
                                                 <span>{getFormattedDate(item.dt_txt)}</span>
                                             </div>
                                             <div className="dayWeatherInfo">
-                                                <div className="fiveDayWeatherTemp">
-                                                    <span>{item.main.temp} °C</span>
-                                                </div>
                                                 <div className="fiveDayWeatherMain">
-                                                    <span>{item.weather[0].main}</span>
+                                                    <span>{capitalizeFirstLetter(item.weather[0].main)}</span>
+                                                </div>
+                                                <div className="fiveDayWeatherTemp">
+                                                    <span>{item.main.temp} °{unit[0]}</span>
                                                 </div>
                                             </div>
-
                                         </div>
                                     )
                                 }

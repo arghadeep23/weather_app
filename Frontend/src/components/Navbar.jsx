@@ -1,7 +1,7 @@
 import "../styles/Navbar.scss";
 import { useState } from 'react';
 import GeoLocation from "../assets/geolocation.svg";
-import { TempContext } from '../styles/src/TempContext';
+import { TempContext } from '../store/TempContext';
 import { useContext } from 'react';
 export default function Navbar({ handleChange, handleSubmit, location, handleUnit, handleGeo }) {
     const { unit } = useContext(TempContext);
@@ -23,7 +23,7 @@ export default function Navbar({ handleChange, handleSubmit, location, handleUni
                             </object> */}
                             <img src={GeoLocation} alt="Geo location" className="icon" />
                         </button>
-                        <button className="tempChange" onClick={handleUnit}>Convert to {unit === 'Celsius' ? 'Fahrenheit' : 'Celcius'}</button>
+                        <button className="tempChange" onClick={handleUnit}>{unit === 'Celsius' ? 'Celsius' : 'Fahrenheit'}</button>
                     </div>
                 </div>
             </header>
