@@ -51,7 +51,7 @@ function App() {
   const fetchLatLong = async (location) => {
     // fetching the latitude and longitude of the user entered location using openweathermap api
     try {
-      const response = await fetch(`http://localhost:3000/lat-long/${location}`).then(response => response.json());
+      const response = await fetch(`https://weather-app-ok47.onrender.com/lat-long/${location}`).then(response => response.json());
       // console.log(response);
       setCoordinates({ lat: response[0].lat, lon: response[0].lon });
       return;
@@ -65,13 +65,13 @@ function App() {
     // 1. fetch the detailed location using the lat and long, this will set the "region" state's key value pairs
     // 2. fetch the forecast using the lat and long, this will set the "forecast" state's key value pairs
     try {
-      const detailedLocation = await fetch(`http://localhost:3000/region/${lat}/${long}`).then(response => response.json());
+      const detailedLocation = await fetch(`https://weather-app-ok47.onrender.com/region/${lat}/${long}`).then(response => response.json());
       setRegion({
         city: detailedLocation[0].name,
         country: detailedLocation[0].country,
         state: detailedLocation[0].state
       })
-      const response = await fetch(`http://localhost:3000/forecast/${lat}/${long}/${unit === 'Celsius' ? 'metric' : 'imperial'}`).then(response => response.json());
+      const response = await fetch(`https://weather-app-ok47.onrender.com/forecast/${lat}/${long}/${unit === 'Celsius' ? 'metric' : 'imperial'}`).then(response => response.json());
       setForecast(response);
     }
     catch (error) {
