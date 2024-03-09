@@ -99,7 +99,7 @@ export default function Overview({ forecast, region }) {
                             </div>
                             <div className="type">
                                 <span className="widgetName">Wind</span>
-                                <span className="values">{forecast.list[0].wind.speed} km/hr</span>
+                                <span className="values">{forecast.list[0].wind.speed} m/s</span>
                             </div>
                         </div>
                         <div className="widget1">
